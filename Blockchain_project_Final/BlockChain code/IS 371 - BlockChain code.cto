@@ -1,0 +1,87 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Sample business network definition.
+ */
+namespace org.example.basic
+
+asset SampleAsset identified by assetId {
+  o String assetId
+  o String assetType
+  o String assetName
+  o String assetDescription
+  --> SampleParticipant owner
+  o Double assetBalance
+}
+
+participant SampleParticipant identified by participantId {
+  o String participantId
+  o String firstName
+  o String lastName
+  o String userType
+}
+
+participant SampleVendor identified by vendorId {
+  o String vendorId
+  o String vendorName
+  o String vendorAddress
+}
+
+participant SampleCustomer identified by customerId {
+  o String customerId
+  o String customerName
+  o String customerAddress
+}
+
+transaction SampleTransaction3 {
+  --> SampleParticipant participant
+  
+  o String description
+  
+  --> SampleAsset asset1
+  o Double debit1
+  o Double credit1
+  
+  --> SampleAsset asset2
+  o Double debit2
+  o Double credit2
+  
+  --> SampleAsset asset3
+  o Double debit3
+  o Double credit3
+}
+
+transaction SampleTransaction2 {
+  --> SampleParticipant participant
+  
+  o String description
+  
+  --> SampleAsset asset1
+  o Double debit1
+  o Double credit1
+  
+  --> SampleAsset asset2
+  o Double debit2
+  o Double credit2
+}
+
+event SampleEvent {
+  --> SampleAsset asset1
+  o Double oldBalance1
+  o Double newBalance1
+  --> SampleAsset asset2
+  o Double oldBalance2
+  o Double newBalance2
+}
